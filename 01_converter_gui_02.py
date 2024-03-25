@@ -1,4 +1,6 @@
-from distutils import command
+
+
+import setuptools
 from tkinter import *
 from tkinter import font
 

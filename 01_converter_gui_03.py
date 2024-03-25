@@ -1,4 +1,6 @@
-from distutils import command
+
+
+import setuptools
 from tkinter import *
 from tkinter import font
 
@@ -42,11 +44,11 @@ class Converter():
     #Conversion, help and history / export buttons
     self.button_frame = Frame(self.temp_frame)
     self.button_frame.grid(row=4)
-    
+
     self.to_celcius_button = Button(self.button_frame, text = "To Celcius", bg = "#990099", fg =button_fg, font=button_font, width = 12, command=lambda: self.temp_convert(-459))
     self.to_celcius_button.grid(row=0 , column=0,padx=5,pady=5)
    
-    self.to_farenheit_button = Button(self.button_frame, text = "To Farenheit", bg = "#009900", fg =button_fg, font=button_font, width = 12, command=lambda: self.temp_convert(-273))
+    self.to_farenheit_button = Button(self.button_frame, text = "To Farenheit", bg = "#009900", fg =button_fg, font=button_font, width = 12, command=lambda:self.temp_convert(-273))
     self.to_farenheit_button.grid(row=0, column=1,padx=5,pady=5)
 
     self.to_help_button = Button(self.button_frame, text = "Help/Info ", bg = "#CC6600", fg =button_fg, font=button_font, width = 12)
@@ -87,38 +89,40 @@ class Converter():
         self.to_history_button.config(state=NORMAL)
         return response
       
-  #check the temperature is valid and convert it to eother celcius or farenheit
+  #check the temperature is valid and convert it
+  @staticmethod
+  def round_ans(val):
+    var_rounded = (val * 2 + 1) // 2
+    return"{:.0f}".format(var_rounded)
+
   def temp_convert(self, min_val):
     
     to_convert = self.check_temp(min_val)
     set_feedback = "yes"
-    answer = "" 
-    from_to =  ""
-    if to_convert != "invalid":
-      set_feedback = "no"
-      #do calculation
+    answer = ""
+    from_to = ""
 
+    if to_convert == "invalid":
+      set_feedback = "no"
+    #convert to celcius
     elif min_val == -459:
-        
-        answer = (to_convert - 32) * 5 / 9
-        from_to = "{} F° is {} C°"
+      answer =(to_convert - 32) * 5 / 9
+      from_to = "{} F° is {} C°"
+      #do calculation
+    
     #convert to farenheit
     else:
-      answer = to_convert * 1.8 + 32
+      answer = to_convert * 1.8  + 32
       from_to = "{} C° is {} F°"
-    
-    if set_feedback == "yes":
-        to_convert = self.round_ans(to_convert)
-        answer= self.round_ans(answer)
 
-        feedback = from_to.format(to_convert, answer )
-        self.var_feedback.set(feedback)
-        
- 
+    if set_feedback == "yes":
+     to_convert = self.round_ans(to_convert)
+     answer = self.round_ans(answer)
+
+     feedback = from_to.format(to_convert, answer)
+     self.var_feedback.set(feedback)
 
     self.output_answer()
-
- 
 
   # Shows user output and clears entry widget
   # ready for next calculation
