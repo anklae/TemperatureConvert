@@ -116,11 +116,11 @@ class Converter():
       from_to = "{} C° is {} F°"
 
     if set_feedback == "yes":
-     to_convert = self.round_ans(to_convert)
-     answer = self.round_ans(answer)
+      to_convert = self.round_ans(to_convert)
+      answer = self.round_ans(answer)
 
-     feedback = from_to.format(to_convert, answer)
-     self.var_feedback.set(feedback)
+      feedback = from_to.format(to_convert, answer)
+      self.var_feedback.set(feedback)
 
     self.output_answer()
 
