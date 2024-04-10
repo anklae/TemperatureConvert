@@ -10,6 +10,10 @@ class Converter:
         button_font = ("Arial","12","bold")
         button_fg = ("#FFFFFF")
 
+        self.all_calculations = ["0 F is -18 C°", "0 C° is 32 F°",
+                                "20 F° is -7 C°", " 20 C° is 68 F°",
+                                "30 Fº is -1 C°", "30 C° is 86 F°",
+                                "40 F is 4 C°", "40 C° is 104 F°"]
         #set up GUI frame
         self.temp_frame = Frame(padx=10, pady=10)
         self.temp_frame.grid()
@@ -44,15 +48,44 @@ class HistoryExport:
 
         self.history_frame.grid()
 
-        self.history_heading_label = Label(self.history_frame, bg =background, text ="History/Export",font=("Arial", "14", "bold"))
+        self.history_heading_label = Label(self.history_frame, bg =background, text ="History/Export",font=("Arial", "16", "bold"))
         self.history_heading_label.grid(row=0)
         
+
+        hist_text="Below are all your Recent Calculations showing 3/3 calculations. All calculations are shown to the nearest degree"
+        self.text_instructions =Label(self.history_frame,text=hist_text,width=45,justify="left",wraplength=300,  padx=10,pady=10)
+        self.text_instructions.grid(row=1)
+
+        self.all_calcs_label = Label(self.history_frame, text="Calculations go here",padx=10,pady=10,bg="#ffe6cc",width="40",justify="left"   )
+        self.all_calcs_label.grid(row=2)
+
+
+        save_text ="Either choose a custom file name (and push <Export>) or simply push <Export> to save your calculations in a text file"
+
+        self.save_text_label = Label(self.history_frame,text =save_text,padx=10,pady=10,bg="#ffe6cc",width="40",justify="left"  )
+        self.save_text_label.grid(row=3)
         
+        self.filename_entry = Entry(self.history_frame,font=("Arial","14"),bg="#ffffff",width=25)
+        self.filename_entry.grid(row=4, padx=10, pady=10)
+        
+        self.filename_error_label
+        self.filename_error_label.grid(row=5)
+
+        self.button_frame = Frame(self.history_frame)
+        self.button_frame.grid(row=6)
+
+        self.export_button = Button(self.button_frame,font=("Arial","12","bold"), text= "Dismiss",bg="#004C99", 
+                                     fg="#FFFFFF", width=12) 
+        self.export_button.grid.grid(row=0,column=0, padx=10, pady=10)
         self.dismiss_button = Button(self.history_frame, font=("Arial","12","bold"), text= "Dismiss",bg="#666666", 
                                      fg="#FFFFFF", 
                                      command=partial(self.close_history,partner))
-        self.dismiss_button.grid(row=2, padx=10, pady=10)
+        self.dismiss_button.grid(row=0,column=1 ,padx=10, pady=10)
         
+    
+
+
+
     def close_history(self, partner):
         partner.to_history_button.config(state=NORMAL)
         self.history_box.destroy()

@@ -28,7 +28,7 @@ class Converter():
         #heading/ instructions gui
         self.temp_heading = Label(self.temp_frame, text="Temperature Converter",font=("YU Gothic UI Semibold","16","bold"))
         self.temp_heading.grid(row=0 )
-        instructions = "Please enter a temperature below and then press one of the buttons to convert it from centrigrade to farenheit"
+        instructions = "Please enter a temperature below and then press one of the buttons to convert it from Centrigrade to Fahrenheit"
         self.temp_instructions = Label(self.temp_frame, text=instructions, wrap=250, width=40, justify = "left")
         self.temp_instructions.grid(row=1)
         
