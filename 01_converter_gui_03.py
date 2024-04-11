@@ -106,21 +106,25 @@ class Converter():
       set_feedback = "no"
     #convert to celcius
     elif min_val == -459:
-      answer =(to_convert - 32) * 5 / 9
+      answer = (to_convert - 32) * 5 / 9
       from_to = "{} F° is {} C°"
+      
       #do calculation
     
     #convert to farenheit
     else:
       answer = to_convert * 1.8  + 32
       from_to = "{} C° is {} F°"
+      
 
     if set_feedback == "yes":
       to_convert = self.round_ans(to_convert)
       answer = self.round_ans(answer)
+      
 
       feedback = from_to.format(to_convert, answer)
       self.var_feedback.set(feedback)
+  
 
     self.output_answer()
 
@@ -136,14 +140,15 @@ class Converter():
       #red text, pink entry box
       self.output_labelerror.config(fg="#9C0000")
       self.temp_entry.config(bg="#F8CECC")
-  
+
     
     #no issues, label wil be blue and entry box white
     else:
       self.output_labelerror.config(fg="#004C00")
       self.temp_entry.config(bg="#FFFFFF")
-    
+
     self.output_labelerror.config(text=output)
+    print("['",output,"']")
 ### main routine ###
 
 if __name__ == "__main__":
