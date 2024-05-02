@@ -31,5 +31,5 @@ else:
     print
     print("**items in order from newest to oldest***")
     for items in all_calculations:
-        print(all_calculations[len(all_calculations)- all_calculations.index(item)- 1])
+        print(all_calculations[len(all_calculations) - all_calculations.index(item)- 1])
         
