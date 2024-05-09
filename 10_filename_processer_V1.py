@@ -39,6 +39,7 @@ def get_date():
     month = today.strftime("%m")
     year = today.strftime("%y") 
 
+    todays_date = "{}/{}/{}".format(day,month,year)
     
     return "{}_{}_{}".format(year, month, day)
 
