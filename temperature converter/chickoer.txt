@@ -1,0 +1,8 @@
+**** Temperature calculations   ****
+Generated:27/05/24 
+
+Here is your calcualtion history (oldest to newest)
+
+234 F° is 112 C°
+234 C° is 453 F°
+

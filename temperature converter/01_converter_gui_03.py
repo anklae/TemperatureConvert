@@ -148,6 +148,8 @@ class Converter():
       self.temp_entry.config(bg="#FFFFFF")
 
     self.output_labelerror.config(text=output)
+    
+
     print("['",output,"']")
 ### main routine ###
 

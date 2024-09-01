@@ -83,6 +83,7 @@ class HistoryExport:
         else:
             calc_background = "#B4FACB" #PALE GREEN
             showing_all = "Below is your calculation history- (showing {}/{} Calculations)".format(max_calcs, num_calcs)
+            
 
             
             
@@ -112,7 +113,7 @@ class HistoryExport:
         self.export_button = Button(self.button_frame,font=("Arial","12","bold"), text= "Export",bg="#004C99", 
                                      fg="#FFFFFF", width=12, command=self.make_file) 
         self.export_button.grid(row=0,column=0, padx=10, pady=10)
-
+    
 
         self.dismiss_button = Button(self.button_frame, font=("Arial","12","bold"), text= "Dismiss",bg="#666666", 
                                      fg="#FFFFFF", width=12, command=partial(self.close_history,partner))
@@ -173,6 +174,9 @@ class HistoryExport:
             self.filename_feedback_label.config(text=success,fg="#228B22")
             self.filename_entry.config(bg="#FFFFFF")
 
+            #write content to file 
+            self.write_to_file()
+
             
             
 
@@ -222,7 +226,28 @@ class HistoryExport:
             problem = "{}. \n Use letters / numbers / underscores only".format(problem)
         return problem
     
+    def write_to_file(self):
+        filename = self.var_filename.get()
+        generated_date = self.var_todays_date.get()
 
+        #set up strings to be written onto file
+        heading = "**** Temperature calculations   ****"
+        generated = "Generated:{} \n".format(generated_date)
+        subheading = "Here is your calcualtion history (oldest to newest)\n"
+
+        all_calculations = self.var_calc_list.get()
+
+        to_output_list = [heading, generated,subheading, all_calculations]
+
+        text_file = open(filename, "w+")
+
+        for item in to_output_list:
+            text_file.write(item)
+            text_file.write("\n")
+        
+        #closes text file
+        text_file.close()
+        
 
     #closes     
     def close_history(self, partner):
